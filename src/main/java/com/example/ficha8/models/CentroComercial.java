@@ -15,11 +15,12 @@ public class CentroComercial {
 
     private String nome;
     private String morada;
-    private int numMaxAndar;
+    private int numMaxAndares;
 
     @Builder.Default
-    @OneToMany(mappedBy = "centro_comercial")
+    @OneToMany(mappedBy = "centroComercial")
     private List<Andar> andares;
+
     // sem getters os dados não são lidos
     public Long getId() {
         return id;
@@ -41,12 +42,12 @@ public class CentroComercial {
         this.morada = morada;
     }
 
-    public int getNumMaxAndar() {
-        return numMaxAndar;
+    public int getNumMaxAndares() {
+        return numMaxAndares;
     }
 
-    public void setNumMaxAndar(int numMaxAndar) {
-        this.numMaxAndar = numMaxAndar;
+    public void setNumMaxAndares(int numMaxAndar) {
+        this.numMaxAndares = numMaxAndar;
     }
 
     public List<Andar> getAndares() {
