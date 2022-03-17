@@ -11,6 +11,14 @@ public class Andar {
     private int numAndar;
     private int numMaxLojas;
 
+    @ManyToOne
+    @JoinColumn(name = "centro_comercial_id")
+    private CentroComercial centroComercial;
+
+    public CentroComercial getCentroComercial() {
+        return centroComercial;
+    }
+
     public Long getId() {
         return id;
     }

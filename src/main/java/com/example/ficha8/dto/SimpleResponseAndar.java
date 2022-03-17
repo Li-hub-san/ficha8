@@ -2,14 +2,16 @@ package com.example.ficha8.dto;
 
 import com.example.ficha8.models.Andar;
 
-public class SimpleResponseAndar extends SimpleResponse{
-    private Andar andar;
+import java.util.Optional;
 
-    public Andar getAndar() {
+public class SimpleResponseAndar extends SimpleResponse{
+    private Optional<Andar> andar;
+
+    public Optional<Andar> getAndar() {
         return andar;
     }
 
-    public void setAndar(Andar andar) {
+    public void setAndar(Optional<Andar> andar) {
         this.andar = andar;
     }
 }

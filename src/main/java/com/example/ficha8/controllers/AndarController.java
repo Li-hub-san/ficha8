@@ -23,14 +23,14 @@ public class AndarController {
     }
 
     @PostMapping("/addAndar")
-    public ResponseEntity<SimpleResponse> addAndar(@RequestBody Andar andar){
-        SimpleResponseAndar sra= new SimpleResponseAndar();
+    public ResponseEntity<SimpleResponse> addAndar(@RequestBody Andar andar) {
+        SimpleResponseAndar sra = new SimpleResponseAndar();
 
         Optional<Andar> andarOptional = andarService.addAndar(andar);
-        if (andarOptional.isPresent()){
+        if (andarOptional.isPresent()) {
             sra.setStatus(true);
             sra.setMessage("Andar adicionado com sucesso");
-            sra.setAndar(andarOptional.get());
+            sra.setAndar(andarOptional);
 
             return ResponseEntity.status(HttpStatus.OK).body(sra);
         }
@@ -39,7 +39,7 @@ public class AndarController {
     }
 
     @GetMapping("/getAllAndar")
-    public ResponseEntity<SimpleResponse> getAllAndar(){
+    public ResponseEntity<SimpleResponse> getAllAndar() {
         SimpleResponseAndares sra = new SimpleResponseAndares();
 
         List<Andar> andares = andarService.getAllAndar();
@@ -51,11 +51,11 @@ public class AndarController {
     }
 
     @DeleteMapping("/deleteAndar/{id}")
-    public ResponseEntity<SimpleResponse> deleteAndar(@PathVariable Long id){
+    public ResponseEntity<SimpleResponse> deleteAndar(@PathVariable Long id) {
         SimpleResponseAndar sra = new SimpleResponseAndar();
         boolean apagou = andarService.deleteAndar(id);
 
-        if (apagou){
+        if (apagou) {
             sra.setStatus(true);
             sra.setMessage("Andar eliminado com sucesso");
             return ResponseEntity.status(HttpStatus.OK).body(sra);
@@ -66,10 +66,19 @@ public class AndarController {
     }
 
     @PostMapping("/addAndar/{andar_id}/centroComercial/{centro_comercial_id}")
-    public ResponseEntity<SimpleResponse> addAndarToCentro(@RequestBody Andar andar, @PathVariable Long centro_comercial_id){
+    public ResponseEntity<SimpleResponse> addAndarToCentro(@PathVariable Long andar_id, @PathVariable Long centro_comercial_id) {
         SimpleResponseAndar sra = new SimpleResponseAndar();
+
+        Optional<Andar> andarOptional = andarService.addAndarToCentro(andar_id, centro_comercial_id);
+        if (andarOptional.isPresent()){
+            sra.setStatus(true);
+            sra.setMessage("Andar adicionado com sucesso");
+            sra.setAndar(andarOptional);
+            return ResponseEntity.status(HttpStatus.OK).body(sra);
+        }
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(sra);
     }
+
 
 }
