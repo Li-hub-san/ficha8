@@ -3,6 +3,7 @@ package com.example.ficha8.models;
 import lombok.Builder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,7 @@ public class CentroComercial {
 
     @Builder.Default
     @OneToMany(mappedBy = "centroComercial")
-    private List<Andar> andares;
+    private List<Andar> andares = new ArrayList<>();
 
     // sem getters os dados não são lidos
     public Long getId() {
